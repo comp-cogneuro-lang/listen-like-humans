@@ -5,6 +5,8 @@
 
 Official implementation of the paper **"Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR"** (submitted to Interspeech 2025). This repository provides code and data to evaluate whether automatic speech recognition (ASR) models process speech incrementally with human-like lexical competition dynamics.
 
+[(misc/cover.png)]
+
 ## Overview
 
 Human speech recognition is incremental: listeners continuously activate and suppress competing word candidates as speech unfolds. This benchmark quantitatively compares the time course of lexical activation in ASR models against human eyetracking data from the Visual World Paradigm (VWP). We probe internal model states over time and measure activation profiles for target words, cohort competitors (same onset), rhyme competitors (different onset, same ending), and unrelated words. The resulting trajectories are compared to human fixation proportions using point-wise RMSE and MAE.
