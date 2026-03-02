@@ -5,7 +5,7 @@
 
 Official implementation of the paper **"Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR"** (submitted to Interspeech 2025). This repository provides code and data to evaluate whether automatic speech recognition (ASR) models process speech incrementally with human-like lexical competition dynamics.
 
-[(misc/cover.png)]
+[](./misc/cover.png)]
 
 ## Overview
 
