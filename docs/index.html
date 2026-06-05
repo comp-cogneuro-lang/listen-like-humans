@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Do Machines Listen Like Humans? — Interactive Results</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f1218'/%3E%3Cpath d='M3 22 Q9 8 15 17 T29 11' fill='none' stroke='%232ca58d' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M3 26 Q11 20 17 24 T29 21' fill='none' stroke='%239b6dd6' stroke-width='2.5' stroke-linecap='round' opacity='.8'/%3E%3C/svg%3E" />
+  <meta name="description" content="Interactive benchmark of phonological competition dynamics in end-to-end ASR models versus human eyetracking data." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Interspeech 2026 · Interactive Results</p>
+    <h1>Do Machines Listen Like Humans?</h1>
+    <p class="subtitle">A Temporal Benchmark for Phonological Competition in End-to-End ASR</p>
+    <p class="lede">
+      Human listeners recognize speech <em>incrementally</em>, activating and suppressing
+      competing word candidates as sound unfolds. This page lets you explore how the
+      time course of lexical activation in ASR models compares to human eyetracking data
+      from the Visual World Paradigm — and shows that high transcription accuracy does
+      <strong>not</strong> imply human-like temporal dynamics.
+    </p>
+    <nav class="tabs-container">
+      <div class="tabs">
+        <button class="tab active" data-view="overview">Overview</button>
+        <button class="tab" data-view="explorer">Trajectory Explorer</button>
+        <button class="tab" data-view="grid">Model Grid</button>
+        <button class="tab" data-view="metrics">Metrics</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="overview" class="view active">
+    <div class="card finding">
+      <h2>Key finding</h2>
+      <p>
+        <strong>Causal</strong> architectures (LSTM, causal CNN, causal RCNN) replicate the
+        hallmark human pattern: early <span class="chip cohort">cohort</span> competition
+        followed by later <span class="chip rhyme">rhyme</span> activation.
+      </p>
+      <p>
+        <strong>Non-causal</strong> models with look-ahead (BiLSTM, Transformer,
+        ConvTransformer) and large pretrained ASR models (wav2vec 2.0, HuBERT, Whisper)
+        fail to capture these dynamics <em>despite higher transcription accuracy</em>.
+      </p>
+      <p class="muted">
+        These results raise a caution against simply claiming that a high-accuracy model is
+        brain-like without evaluating its temporal dynamics.
+      </p>
+      <p class="footnote">
+        <strong>*&nbsp;NonCausal-RCNN</strong> is a hybrid: a unidirectional (causal) LSTM on top
+        of a non-causal, centered CNN front-end. The CNN's receptive field is 25 frames
+        (±12 frames ≈ ±120&nbsp;ms of look-ahead at 10&nbsp;ms/frame), which is what makes the
+        overall model non-causal.
+      </p>
+    </div>
+
+    <div class="leaderboard-head">
+      <h2>How human-like is each model?</h2>
+      <p class="muted">Overall RMSE between each model's activation trajectories and human VWP
+      fixation proportions. Click any bar to open it in the explorer.</p>
+    </div>
+    <div id="overview-chart" class="plot tall"></div>
+
+    <div class="legend-row">
+      <span class="key"><i class="sw causal"></i>Causal</span>
+      <span class="key"><i class="sw noncausal"></i>Non-causal</span>
+      <span class="key"><i class="sw foundation"></i>Foundation (pretrained)</span>
+    </div>
+  </section>
+
+  <section id="explorer" class="view">
+    <div class="controls card">
+      <div class="control-group">
+        <label>Competitor types <span class="muted">(select one or more)</span></label>
+        <div id="competitor-toggle" class="seg"></div>
+      </div>
+      <div class="control-group grow">
+        <label>Models <span class="muted">(click to toggle)</span></label>
+        <div id="model-toggle" class="model-chips"></div>
+      </div>
+      <div class="control-group">
+        <label>Reference</label>
+        <label class="switch"><input type="checkbox" id="human-toggle" checked /> Human VWP</label>
+        <button id="explorer-reset" class="btn-mini">Reset</button>
+      </div>
+    </div>
+    <div id="explorer-chart" class="plot tall"></div>
+    <p class="muted small">
+      When more than one competitor type is shown, <strong>line color = model</strong> and
+      <strong>dash style = competitor type</strong> (Target solid, Cohort dashed, Rhyme dotted,
+      Unrelated dash-dot, Cross long-dash).
+    </p>
+  </section>
+
+  <section id="grid" class="view">
+    <div class="controls card">
+      <div class="control-group grow">
+        <label>Competitor types shown in each panel</label>
+        <div id="grid-competitor-toggle" class="seg multi"></div>
+      </div>
+      <div class="control-group">
+        <label class="switch"><input type="checkbox" id="grid-human-toggle" checked /> Overlay human reference</label>
+      </div>
+    </div>
+    <div id="grid-wrap" class="grid-wrap"></div>
+  </section>
+
+  <section id="metrics" class="view">
+    <div class="controls card">
+      <div class="control-group">
+        <label>Metric</label>
+        <div id="metric-toggle" class="seg"></div>
+      </div>
+      <p class="muted small grow">Click a column header to sort; click a row to open that model in the explorer.</p>
+    </div>
+    <div class="table-scroll card">
+      <table id="metrics-table"></table>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Human fixation data: Allopenna et al. (1998).</p>
+    <p class="muted">Implementation · <a href="https://github.com/vocaliodmiku/HTP-benchmark" id="repo-link">repository</a> · MIT License</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
