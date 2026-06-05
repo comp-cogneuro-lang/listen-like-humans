@@ -1,0 +1,36 @@
+cmu,ipa,homolog,v_or_c,sonority,manner,placerough,place,voicing,position,height,voweltype,voicingpair,lang,count
+AH,ʌ,AH,vowel,3: vowel,vowel,,,,central,open,monophthong,,en,1752984.0
+B,b,B,consonant,1: obstruents,plosive,labial,labial,voiced,,,,p,en,346454.0
+CH,tʃ,CH,consonant,1: obstruents,affricate,,postalveolar/palatal,voiceless,,,,tʃ,en,78718.0
+DH,ð,DH,consonant,1: obstruents,fricative,,dental/alveolar,voiced,,,,θ,en,561905.0
+F,f,F,consonant,1: obstruents,fricative,labial,labial,voiceless,,,,f,en,303292.0
+G,ɡ,G,consonant,1: obstruents,plosive,dorsal,velar/uvular,voiced,,,,k,en,173972.0
+IY,i,IY,vowel,3: vowel,vowel,,,,front,close,monophthong,,en,739292.0
+JH,dʒ,JH,consonant,1: obstruents,affricate,,postalveolar/palatal,voiced,,,,tʃ,en,89166.0
+K,k,K,consonant,1: obstruents,plosive,dorsal,velar/uvular,voiceless,,,,k,en,557643.0
+M,m,M,consonant,2: nasal/approximant,nasal,labial,labial,,,,,,en,544406.0
+NG,ŋ,NG,consonant,2: nasal/approximant,nasal,dorsal,velar/uvular,,,,,,en,218981.0
+S,s,S,consonant,1: obstruents,fricative,coronal,dental/alveolar,voiceless,,,,s,en,851225.0
+TH,θ,TH,consonant,1: obstruents,fricative,,dental/alveolar,voiceless,,,,θ,en,112878.0
+UW,u,UW,vowel,3: vowel,vowel,,,,back,close,monophthong,,en,310148.0
+Y,j,Y,consonant,2: nasal/approximant,approximant,,postalveolar/palatal,,,,,,en,191797.0
+c,c,c,,,,,,,,,,,,
+d,d̪,d,,,,,,,,,,,,
+e,e,e,,,,,,,,,,,,
+l,l,l,,,,,,,,,,,,
+n,n,n,,,,,,,,,,,,
+oo,o,oo,,,,,,,,,,,,
+p,p,p,,,,,,,,,,,,
+r,r,r,,,,,,,,,,,,
+t,t̪,t,,,,,,,,,,,,
+w,w,w,,,,,,,,,,,,
+x,x,x,,,,,,,,,,,,
+c?,ç,c?,,,,,,,,,,,,
+f,ɟ,f,,,,,,,,,,,,
+v,ɣ,v,,,,,,,,,,,,
+ng,ɲ,ng,,,,,,,,,,,,
+?,ɾ,?,,,,,,,,,,,,
+s,ʃ,s,,,,,,,,,,,,
+y,ʎ,y,,,,,,,,,,,,
+j,ʝ,j,,,,,,,,,,,,
+b,β,b,,,,,,,,,,,,

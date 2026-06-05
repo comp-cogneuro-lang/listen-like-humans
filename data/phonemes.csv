@@ -1,0 +1,75 @@
+,cmu,ipa,homolog,v_or_c,sonority,manner,placerough,place,voicing,position,height,voweltype,voicingpair,lang,count,language
+0,AA,ɑ,AA,vowel,3: vowel,vowel,,,,central,open,monophthong,,en,289096.0,en
+1,AE,æ,AE,vowel,3: vowel,vowel,,,,front,open,monophthong,,en,459972.0,en
+2,AH,ʌ,AH,vowel,3: vowel,vowel,,,,central,open,monophthong,,en,1752984.0,en
+3,AO,ɔ,AO,vowel,3: vowel,vowel,,,,back,open,monophthong,,en,266504.0,en
+4,AW,aʊ,AW,vowel,3: vowel,vowel,,,,,,diphtong,,en,122632.0,en
+5,AY,aɪ,AY,vowel,3: vowel,vowel,,,,,,diphtong,,en,371523.0,en
+6,B,b,B,consonant,1: obstruents,plosive,labial,labial,voiced,,,,p,en,346454.0,en
+7,CH,tʃ,CH,consonant,1: obstruents,affricate,,postalveolar/palatal,voiceless,,,,tʃ,en,78718.0,en
+8,D,d,D,consonant,1: obstruents,plosive,coronal,dental/alveolar,voiced,,,,t,en,753534.0,en
+9,DH,ð,DH,consonant,1: obstruents,fricative,,dental/alveolar,voiced,,,,θ,en,561905.0,en
+10,EH,ɛ,EH,vowel,3: vowel,vowel,,,,front,mid,monophthong,,en,505990.0,en
+11,ER,ɝ,ER,vowel,3: vowel,vowel,,,,central,mid,monophthong,,en,458771.0,en
+12,EY,eɪ,EY,vowel,3: vowel,vowel,,,,,,diphtong,,en,303809.0,en
+13,F,f,F,consonant,1: obstruents,fricative,labial,labial,voiceless,,,,f,en,303292.0,en
+14,G,ɡ,G,consonant,1: obstruents,plosive,dorsal,velar/uvular,voiced,,,,k,en,173972.0,en
+15,HH,h,HH,consonant,1: obstruents,fricative,dorsal,glottal,voiceless,,,,,en,344118.0,en
+16,IH,ɪ,IH,vowel,3: vowel,vowel,,,,front,close,monophthong,,en,1138540.0,en
+17,IY,i,IY,vowel,3: vowel,vowel,,,,front,close,monophthong,,en,739292.0,en
+18,JH,dʒ,JH,consonant,1: obstruents,affricate,,postalveolar/palatal,voiced,,,,tʃ,en,89166.0,en
+19,K,k,K,consonant,1: obstruents,plosive,dorsal,velar/uvular,voiceless,,,,k,en,557643.0,en
+20,L,l,L,consonant,2: nasal/approximant,approximant,,dental/alveolar,,,,,,en,722313.0,en
+21,M,m,M,consonant,2: nasal/approximant,nasal,labial,labial,,,,,,en,544406.0,en
+22,N,n,N,consonant,2: nasal/approximant,nasal,coronal,dental/alveolar,,,,,,en,1211189.0,en
+23,NG,ŋ,NG,consonant,2: nasal/approximant,nasal,dorsal,velar/uvular,,,,,,en,218981.0,en
+24,OW,oʊ,OW,vowel,3: vowel,vowel,,,,,,diphtong,,en,248749.0,en
+25,OY,ɔɪ,OY,vowel,3: vowel,vowel,,,,,,diphtong,,en,40795.0,en
+26,P,p,P,consonant,1: obstruents,plosive,labial,labial,voiceless,,,,p,en,352090.0,en
+27,R,ɹ,R,consonant,2: nasal/approximant,approximant,,postalveolar/palatal,,,,,,en,747105.0,en
+28,S,s,S,consonant,1: obstruents,fricative,coronal,dental/alveolar,voiceless,,,,s,en,851225.0,en
+29,SH,ʃ,SH,consonant,1: obstruents,fricative,,postalveolar/palatal,voiceless,,,,ʃ,en,131676.0,en
+30,T,t,T,consonant,1: obstruents,plosive,coronal,dental/alveolar,voiceless,,,,t,en,1351742.0,en
+31,TH,θ,TH,consonant,1: obstruents,fricative,,dental/alveolar,voiceless,,,,θ,en,112878.0,en
+32,UH,ʊ,UH,vowel,3: vowel,vowel,,,,back,close,monophthong,,en,95954.0,en
+33,UW,u,UW,vowel,3: vowel,vowel,,,,back,close,monophthong,,en,310148.0,en
+34,V,v,V,consonant,1: obstruents,fricative,labial,labial,voiced,,,,f,en,308814.0,en
+35,W,w,W,consonant,2: nasal/approximant,approximant,,velar/uvular,,,,,,en,428141.0,en
+36,Y,j,Y,consonant,2: nasal/approximant,approximant,,postalveolar/palatal,,,,,,en,191797.0,en
+37,Z,z,Z,consonant,1: obstruents,fricative,coronal,dental/alveolar,voiced,,,,s,en,516448.0,en
+38,ZH,ʒ,ZH,consonant,1: obstruents,fricative,,postalveolar/palatal,voiced,,,,ʃ,en,9603.0,en
+39,AH,ʌ,AH,vowel,3: vowel,vowel,,,,central,open,monophthong,,en,1752984.0,es
+40,B,b,B,consonant,1: obstruents,plosive,labial,labial,voiced,,,,p,en,346454.0,es
+41,CH,tʃ,CH,consonant,1: obstruents,affricate,,postalveolar/palatal,voiceless,,,,tʃ,en,78718.0,es
+42,DH,ð,DH,consonant,1: obstruents,fricative,,dental/alveolar,voiced,,,,θ,en,561905.0,es
+43,F,f,F,consonant,1: obstruents,fricative,labial,labial,voiceless,,,,f,en,303292.0,es
+44,G,ɡ,G,consonant,1: obstruents,plosive,dorsal,velar/uvular,voiced,,,,k,en,173972.0,es
+45,IY,i,IY,vowel,3: vowel,vowel,,,,front,close,monophthong,,en,739292.0,es
+46,JH,dʒ,JH,consonant,1: obstruents,affricate,,postalveolar/palatal,voiced,,,,tʃ,en,89166.0,es
+47,K,k,K,consonant,1: obstruents,plosive,dorsal,velar/uvular,voiceless,,,,k,en,557643.0,es
+48,M,m,M,consonant,2: nasal/approximant,nasal,labial,labial,,,,,,en,544406.0,es
+49,NG,ŋ,NG,consonant,2: nasal/approximant,nasal,dorsal,velar/uvular,,,,,,en,218981.0,es
+50,S,s,S,consonant,1: obstruents,fricative,coronal,dental/alveolar,voiceless,,,,s,en,851225.0,es
+51,TH,θ,TH,consonant,1: obstruents,fricative,,dental/alveolar,voiceless,,,,θ,en,112878.0,es
+52,UW,u,UW,vowel,3: vowel,vowel,,,,back,close,monophthong,,en,310148.0,es
+53,Y,j,Y,consonant,2: nasal/approximant,approximant,,postalveolar/palatal,,,,,,en,191797.0,es
+54,c,c,c,,,,,,,,,,,,,es
+55,d,d̪,d,,,,,,,,,,,,,es
+56,e,e,e,,,,,,,,,,,,,es
+57,l,l,l,,,,,,,,,,,,,es
+58,n,n,n,,,,,,,,,,,,,es
+59,oo,o,oo,,,,,,,,,,,,,es
+60,p,p,p,,,,,,,,,,,,,es
+61,r,r,r,,,,,,,,,,,,,es
+62,t,t̪,t,,,,,,,,,,,,,es
+63,w,w,w,,,,,,,,,,,,,es
+64,x,x,x,,,,,,,,,,,,,es
+65,c?,ç,c?,,,,,,,,,,,,,es
+66,f,ɟ,f,,,,,,,,,,,,,es
+67,v,ɣ,v,,,,,,,,,,,,,es
+68,ng,ɲ,ng,,,,,,,,,,,,,es
+69,?,ɾ,?,,,,,,,,,,,,,es
+70,s,ʃ,s,,,,,,,,,,,,,es
+71,y,ʎ,y,,,,,,,,,,,,,es
+72,j,ʝ,j,,,,,,,,,,,,,es
+73,b,β,b,,,,,,,,,,,,,es

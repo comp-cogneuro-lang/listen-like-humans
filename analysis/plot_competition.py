@@ -82,7 +82,7 @@ def save_mean_csv(category2activation, output_dir, frame2ms):
     df_mean = df_mean.round(4)
     
     # Filter columns if they exist
-    cols_to_keep = ['Target', 'Cohort', 'Rhyme']
+    cols_to_keep = ['Target', 'Cohort', 'Rhyme', 'Anadrome']
     existing_cols = [c for c in cols_to_keep if c in df_mean.columns]
     # If we have extra columns, keep only the specific ones if present
     if existing_cols:

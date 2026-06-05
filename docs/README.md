@@ -3,7 +3,7 @@
 This folder is a self-contained, static GitHub Pages site that lets readers
 explore the phonological-competition results interactively (Plotly, no backend).
 
-**Live:** https://vocaliodmiku.github.io/HTP-benchmark/
+**Live:** https://comp-cogneuro-lang.github.io/listen-like-humans/
 
 ## Contents
 

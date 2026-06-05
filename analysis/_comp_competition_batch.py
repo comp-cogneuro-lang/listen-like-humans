@@ -125,7 +125,7 @@ def process_epoch(args, n_epoch, trainer, dataset, word_competition_dict, word_i
             
                 # Categories
                 related_indices = []
-                for category in ["Target", "Cohort", "Rhyme"]:
+                for category in ["Target", "Cohort", "Rhyme", "Anadrome"]:
                     if len(word_competition_dict[word, category]) > 0:
                         category_words = word_competition_dict[word, category]
                         # Filter words that are in word_index_dict

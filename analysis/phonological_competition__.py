@@ -41,7 +41,7 @@ def Category_Dict_Generate(using_Word_List, pronunciation_Dict, w2v_model=None):
     print("Category dict generating...")
     num_semantic_nearbors = 5
     category_Dict = {}
-    num_anadrome = 0
+    
     import hashlib, os
     hash_code = hashlib.md5(str(using_Word_List).encode()).hexdigest()
     if os.path.exists(f"cache/category_dict_{hash_code}.pkl"):
@@ -50,7 +50,7 @@ def Category_Dict_Generate(using_Word_List, pronunciation_Dict, w2v_model=None):
             category_Dict = pickle.load(f)
         print("Category dict loaded from cache.")
         return category_Dict
- 
+    
     for target_Word in using_Word_List:
         target_Pronunciation = pronunciation_Dict[target_Word]["pronunciation"]
 
@@ -59,9 +59,6 @@ def Category_Dict_Generate(using_Word_List, pronunciation_Dict, w2v_model=None):
         category_Dict[target_Word, "Rhyme"] = []
         category_Dict[target_Word, "Embedding"] = []
         category_Dict[target_Word, "DAS_Neighborhood"] = []
-        
-        # anadrome
-        category_Dict[target_Word, "Anadrome"] = [] 
         if w2v_model:
             semantic_neighborhood = [word for word, sim in w2v_model.most_similar_cosmul(target_Word + "-en", topn=num_semantic_nearbors)]
             semantic_neighborhood = semantic_neighborhood[:num_semantic_nearbors]
@@ -83,16 +80,12 @@ def Category_Dict_Generate(using_Word_List, pronunciation_Dict, w2v_model=None):
             if compare_Pronunciation in target_Pronunciation and target_Word != compare_Word:
                 category_Dict[target_Word, "Embedding"].append(compare_Word)
                 unrelated = False
-            # anadrome
-            if target_Pronunciation[::-1] == compare_Pronunciation and target_Word != compare_Word:
-                category_Dict[target_Word, "Anadrome"].append(compare_Word)
-                num_anadrome += 1
+
             # if unrelated:
             #     category_Dict[target_Word, "Unrelated"].append(compare_Word)
             # For test
             if DAS_Neighborhood_Checker(target_Word, compare_Word, pronunciation_Dict):
                 category_Dict[target_Word, "DAS_Neighborhood"].append(compare_Word)
-    print(f"Number of anadrome pairs: {num_anadrome}")       
     import pickle
     with open(f"cache/category_dict_{hash_code}.pkl", "wb") as f:
         pickle.dump(category_Dict, f)
@@ -186,6 +179,7 @@ def RT_Dict_Generate_item(
     
     return rt_Dict
 
+
 import pandas as pd
 import numpy as np
 
@@ -222,13 +216,3 @@ def dict_to_dataframe(categorized_data_dict):
     df = pd.DataFrame(rows)
     
     return df
-
-
-if __name__ == "__main__":
-    pronunciation_Dict = {}
-    with open("/home/fie24002/Earshot-CS/examples/librispeech/data/vocab_20000", "r") as f:
-        for i in f:
-            word, pronunciation = i.strip().split("\t")[:2]
-            pronunciation_Dict[word] = {"pronunciation": pronunciation.split(".")}
-    using_Word_List = list(pronunciation_Dict.keys())    
-    Category_Dict_Generate(using_Word_List, pronunciation_Dict)

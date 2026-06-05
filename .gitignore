@@ -12,3 +12,10 @@ wandb
 cache
 data_process
 torchaudio-contrib
+
+# Large data / model artifacts (too big or not needed in the repo)
+data/prefetch.npy
+data/embeddings/
+pretrained_models/*checkpoint*
+tmp/
+*.checkpoint

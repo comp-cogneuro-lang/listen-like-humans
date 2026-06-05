@@ -9,10 +9,10 @@
 #SBATCH --output=%x_test_%j.out
 
 # Load SLURM environment
-module load cuda/12.3
-source ~/.bashrc
-source ~/miniconda3/bin/activate bi
-nvidia-smi
+# module load cuda/12.3
+# source ~/.bashrc
+# source ~/miniconda3/bin/activate bi
+# nvidia-smi
 
 # Define configurations
 declare -A EXPERIMENTS
