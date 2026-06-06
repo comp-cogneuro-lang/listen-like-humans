@@ -1,5 +1,7 @@
 # Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR
 
+**🌐 Languages:** English | [简体中文](README_zh.md)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Interactive results](https://img.shields.io/badge/results-interactive%20demo-6aa8ff.svg)](https://comp-cogneuro-lang.github.io/listen-like-humans/)
@@ -134,7 +136,7 @@ python pretrained_models/eval_whisper.py
 
 ## Results
 
-Our main results show that **causal models** better match human VWP dynamics (lower RMSE/MAE) than **non-causal** and many off-the-shelf pretrained ASR models. These results raise a caution against simply claiming that a high-accuracy model is brain-like without evaluating its temporal dynamics. All plots and metrics produced by `evaluate.py` are saved in `results/`.
+Our main results show that **causal models** better match human VWP dynamics (lower RMSE/MAE) than **non-causal** and many off-the-shelf pretrained ASR models. These results raise a caution against simply claiming that a high-accuracy model is brain-like without evaluating its temporal dynamics. Per-model activation trajectories are written to `experiments/<model>/competition.csv`, and the final metrics and figures are generated from them by the notebooks in `notebooks/` (see below).
 
 ## Reproducing Paper Figures
 
