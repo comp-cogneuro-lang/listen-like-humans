@@ -143,8 +143,10 @@ while idx < num_samples:
         
         categorized_data_dict[0, word, speaker, "Unrelated"] = np.mean(np.delete(cs_array, related_indices, 0), axis=0)
         
-        # case 
-        np.savez(f"/home/fie24002/earshot_nn/experiments/en_words_ku_2lstmbi/noncausal-2LSTM/case_studies/{word}_{speaker}_activations.npz", cs_array=cs_array, related_indices=related_indices)
+        # case study activations (relative to repo root)
+        case_dir = "experiments/en_words_ku_2lstmbi/noncausal-2LSTM/case_studies"
+        os.makedirs(case_dir, exist_ok=True)
+        np.savez(f"{case_dir}/{word}_{speaker}_activations.npz", cs_array=cs_array, related_indices=related_indices)
       
     rt_accuracy_pct = (len(rt_cor)/rt_tot*100) if rt_tot > 0 else 0
     batch_time = time.time() - st

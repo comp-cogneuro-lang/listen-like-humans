@@ -92,8 +92,9 @@ def Category_Dict_Generate(using_Word_List, pronunciation_Dict, w2v_model=None):
             # For test
             if DAS_Neighborhood_Checker(target_Word, compare_Word, pronunciation_Dict):
                 category_Dict[target_Word, "DAS_Neighborhood"].append(compare_Word)
-    print(f"Number of anadrome pairs: {num_anadrome}")       
+    print(f"Number of anadrome pairs: {num_anadrome}")
     import pickle
+    os.makedirs("cache", exist_ok=True)
     with open(f"cache/category_dict_{hash_code}.pkl", "wb") as f:
         pickle.dump(category_Dict, f)
     print("Category dict saved to cache.")
@@ -226,7 +227,7 @@ def dict_to_dataframe(categorized_data_dict):
 
 if __name__ == "__main__":
     pronunciation_Dict = {}
-    with open("/home/fie24002/Earshot-CS/examples/librispeech/data/vocab_20000", "r") as f:
+    with open("dataset/en/vocab.txt", "r") as f:
         for i in f:
             word, pronunciation = i.strip().split("\t")[:2]
             pronunciation_Dict[word] = {"pronunciation": pronunciation.split(".")}
