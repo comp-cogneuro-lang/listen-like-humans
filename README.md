@@ -4,7 +4,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Interactive results](https://img.shields.io/badge/results-interactive%20demo-6aa8ff.svg)](https://comp-cogneuro-lang.github.io/listen-like-humans/)
 
-> 🔎 **Explore the results interactively:** [comp-cogneuro-lang.github.io/listen-like-humans](https://comp-cogneuro-lang.github.io/listen-like-humans/) — overlay model and human activation trajectories, browse a per-model grid, and sort the RMSE/MAE table. Source and build script in [`docs/`](docs/).
+> 🔎 **Explore the results interactively:** [comp-cogneuro-lang.github.io/listen-like-humans](https://comp-cogneuro-lang.github.io/listen-like-humans/) — overlay model and human activation trajectories, browse a per-model grid, and sort the RMSE/MAE table.
 
 Official implementation of the paper **"Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR"** (Interspeech 2026). This repository provides code and data to evaluate whether automatic speech recognition (ASR) models process speech incrementally with human-like lexical competition dynamics.
 
@@ -13,33 +13,6 @@ Official implementation of the paper **"Do Machines Listen Like Humans? A Tempor
 Human speech recognition is incremental: listeners continuously activate and suppress competing word candidates as speech unfolds. This benchmark quantitatively compares the time course of lexical activation in ASR models against human eyetracking data from the Visual World Paradigm (VWP). We probe internal model states over time and measure activation profiles for target words, cohort competitors (same onset), rhyme competitors (different onset, same ending), and unrelated words. The resulting trajectories are compared to human fixation proportions using point-wise RMSE and MAE.
 
 **Key finding:** Causal architectures (LSTM, causal CNN, causal RCNN) replicate the hallmark human pattern—early cohort competition followed by later rhyme activation—while non-causal models with look-ahead (BiLSTM, Transformer, ConvTransformer) and large pretrained ASR models (wav2vec 2.0, HuBERT, Whisper) fail to capture these temporal dynamics despite higher transcription accuracy.
-
-## Repository Structure
-
-```
-earshot_nn/
-├── train.sh                    # Training script runner
-├── test.sh                     # Testing script runner
-├── requirements.txt            # Python dependencies
-├── src/                        # Core source code
-├── data/                       # Dataset and phoneme data
-├── dataset/                    # Dataset splits and vocabulary
-├── experiments/                # Experiment configurations and results
-│   ├── *.cfg                   # Config files for different model variants
-│   └── (experiment_dirs)/      # Trained models and checkpoints
-├── pretrained_models/          # Evaluation scripts for foundation models
-│   ├── eval_wav2vec2.py        # wav2vec 2.0 and HuBERT evaluation
-│   ├── eval_whisper.py         # Whisper evaluation
-│   ├── eval_whisper_realtime.py
-│   └── eval_nemotron_realtime.py
-├── analysis/                   # Analysis and visualization
-├── notebooks/                  # Jupyter notebooks for analysis
-│   ├── Fig2_4.ipynb            # Figure 2 & 4 analysis
-│   ├── Fig3.ipynb              # Figure 3 analysis
-│   ├── calculate_RMSE_MAE.ipynb # Metrics computation
-├── misc/                       # Miscellaneous utilities
-    └── print_model_parameters.py
-```
 
 ## Dataset
 
