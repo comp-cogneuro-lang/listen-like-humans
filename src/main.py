@@ -35,7 +35,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--is_cpu', action='store_true', help='run on CPU instead')
     parser.add_argument('--datapath', type=str, 
-                        default=os.getenv('DATAPATH', '/home/fie24002/bilingual_networks/dataset'),
+                        default=os.getenv('DATAPATH', 'dataset'),
                         help='path to dataset directory')
     parser.add_argument('--num_workers', type=int, 
                         default=int(os.getenv('NUM_WORKERS', 8)), 

@@ -1,20 +1,5 @@
 #!/bin/bash
-#SBATCH --partition=general-gpu
-#SBATCH --ntasks=20
-#SBATCH --nodes=1
-#SBATCH -C gpu
-#SBATCH --gres=gpu:1
-#SBATCH --nodelist=gpu[13-27]
-#SBATCH --mem=100G
-#SBATCH --output=%x_%j.out
 
-# Load SLURM environment
-module load cuda/12.3
-source ~/.bashrc
-source ~/miniconda3/bin/activate bi
-nvidia-smi
-
-# Define configurations
 declare -A EXPERIMENTS
 
 # Format: "config_path|run_name"
@@ -37,7 +22,7 @@ EXPERIMENTS["noncausal-trans"]="experiments/en_words_ku_trans.cfg|noncausal-tran
 KEY=$1
 
 if [ -z "$KEY" ]; then
-    echo "Usage: sbatch train.sh <experiment_key>"
+    echo "Usage: bash train.sh <experiment_key> [extra args for src/main.py]"
     echo "Available keys: ${!EXPERIMENTS[@]}"
     exit 1
 fi
@@ -49,6 +34,8 @@ if [ -z "${EXPERIMENTS[$KEY]}" ]; then
     exit 1
 fi
 
+shift # remaining args are forwarded to src/main.py (e.g. --num_epochs 500)
+
 IFS='|' read -r CONFIG_PATH RUN_NAME <<< "${EXPERIMENTS[$KEY]}"
 
 echo "Running experiment '$KEY'"
@@ -56,12 +43,13 @@ echo "Config: $CONFIG_PATH"
 echo "Name: $RUN_NAME"
 
 # Run command
-export USE_WANDB=1 
-export CUBLAS_WORKSPACE_CONFIG=:4096:8 
-export PYTHONPATH=src 
+export USE_WANDB=${USE_WANDB:-1}
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export PYTHONPATH=src
 
 python src/main.py \
     --config_path="$CONFIG_PATH" \
     --datapath=dataset \
     --name="$RUN_NAME" \
-    --num_workers 2
+    --num_workers 2 \
+    "$@"

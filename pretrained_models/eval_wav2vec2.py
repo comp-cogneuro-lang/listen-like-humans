@@ -10,24 +10,26 @@ import time
 import unicodedata
 import soundfile as sf
 import torchaudio
-from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor
+from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor, AutoModelForCTC, AutoProcessor
 from phonological_competition import Category_Dict_Generate, dict_to_dataframe
 import glob
 import random
 
 # Configuration
 datapath = './dataset/'
-model_name = "facebook/wav2vec2-base-960h"
-basepath = "experiments/wav2vec2"
+model_name = os.environ.get("MODEL_NAME", "facebook/wav2vec2-base-960h")
+basepath = os.environ.get("OUTPUT_DIR", "experiments/wav2vec2")
 os.makedirs(basepath, exist_ok=True)
+os.makedirs(os.path.join(basepath, "imgs"), exist_ok=True)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 start_time = time.time()
 dealy20 = True
 
 print(f"Loading Wav2Vec2 model: {model_name}")
-processor = Wav2Vec2Processor.from_pretrained(model_name)
-model = Wav2Vec2ForCTC.from_pretrained(model_name).to(device)
+# Use Auto* classes so the same script handles both wav2vec2 and hubert CTC checkpoints.
+processor = AutoProcessor.from_pretrained(model_name)
+model = AutoModelForCTC.from_pretrained(model_name).to(device)
 model.eval()
 
 # Load Pronunciation Dictionary

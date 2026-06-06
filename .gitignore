@@ -3,14 +3,13 @@ __*
 .vscode
 .ipynb_checkpoints
 dataset
-experiments/
+dataset.tar.gz
+experiments/*
 !experiments/*.cfg
 imgs
-prepare*
 sequential
 wandb
 cache
-data_process
 torchaudio-contrib
 
 # Large data / model artifacts (too big or not needed in the repo)

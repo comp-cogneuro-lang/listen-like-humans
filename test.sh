@@ -1,18 +1,9 @@
 #!/bin/bash
-#SBATCH --partition=general-gpu
-#SBATCH --ntasks=20
-#SBATCH --nodes=1
-#SBATCH -C gpu
-#SBATCH --gres=gpu:1
-#SBATCH --nodelist=gpu[13-27]
-#SBATCH --mem=100G
-#SBATCH --output=%x_test_%j.out
-
-# Load SLURM environment
-# module load cuda/12.3
-# source ~/.bashrc
-# source ~/miniconda3/bin/activate bi
-# nvidia-smi
+# Evaluation launcher. Run on a machine with a GPU:
+#   bash test.sh <experiment_key> <epoch1> [epoch2 ...]
+# Run with no epochs to list available checkpoints for that model.
+#
+# Assumes a GPU is visible and the correct Python environment is already active.
 
 # Define configurations
 declare -A EXPERIMENTS
@@ -53,12 +44,12 @@ fi
 
 if [ -z "$EPOCHS" ]; then
     echo "Error: At least one epoch must be specified."
-    
+
     # Try to find available checkpoints
     IFS='|' read -r CONFIG_PATH RUN_NAME <<< "${EXPERIMENTS[$KEY]}"
     CONFIG_DIR="${CONFIG_PATH%.cfg}"
     CHECKPOINT_DIR="$CONFIG_DIR/$RUN_NAME/pretraining"
-    
+
     if [ -d "$CHECKPOINT_DIR" ]; then
         echo "Available Checkpoints for '$KEY':"
         # List files, extract numbers, sort numerically
@@ -67,7 +58,7 @@ if [ -z "$EPOCHS" ]; then
     else
         ALT_CHECKPOINT_DIR="experiments/${CONFIG_PATH##*/}" # Strips path, keeps filename e.g. en_words_ku_baseline.cfg
         ALT_CHECKPOINT_DIR="${ALT_CHECKPOINT_DIR%.cfg}/$RUN_NAME/pretraining"
-        
+
         if [ -d "$ALT_CHECKPOINT_DIR" ]; then
              echo "Available Checkpoints for '$KEY' (found at alternate path):"
              ls "$ALT_CHECKPOINT_DIR"/model_state_*.pth 2>/dev/null | grep -o 'model_state_[0-9]\+\.pth' | grep -o '[0-9]\+' | sort -n | tr '\n' ' '

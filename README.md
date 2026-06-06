@@ -20,13 +20,28 @@ We use a controlled lexicon of 1,533 uninflected English words (1–16 phonemes)
 
 Human fixation data are derived from the Allopenna et al. (1998) study and processed into time-normalized proportions for target, cohort, rhyme, and unrelated conditions. These are provided in `notebooks/INPUT/amt_human_mean.csv`.
 
+### Download the data
+
+The human fixation data (`notebooks/INPUT/amt_human_mean.csv`) are already included in this repo. The audio (`*.wav`, 16 kHz) is **not** — download `dataset.tar.gz` from [Zenodo](https://zenodo.org/records/20564345) and unpack it at the repo root:
+
+```bash
+tar -xzf dataset.tar.gz   # populates dataset/en/<speaker>/<word>.wav
+```
+
+Spectrograms are computed and prefetched into memory on first run; a small category-dictionary cache is written to `cache/` automatically.
+
 ## Requirements
 
-Install dependencies with:
+The code was developed with **Python 3.10+** and PyTorch; a CUDA GPU is recommended for training. Install dependencies with:
 
 ```bash
 pip install -r requirements.txt
 ```
+
+Notes:
+- Training logs to [Weights & Biases](https://wandb.ai) by default — set `USE_WANDB=0` to disable it (no account required).
+- Evaluating the foundation models (wav2vec 2.0, HuBERT, Whisper) downloads pretrained weights from the Hugging Face Hub on first run, so those jobs need internet access (or a pre-populated `HF_HOME` cache for offline nodes).
+- The figure notebooks additionally require Jupyter (`pip install jupyter`).
  
 ## Model Zoo
 
@@ -57,23 +72,37 @@ We also evaluate pretrained foundation models (no fine-tuning): `wav2vec2`, `hub
 
 ### Train models
 
-To train a model variant on the isolated word task:
-
 ```bash
-sh train.sh <experiment_key>
+bash train.sh <experiment_key>
 ```
 
-where `<experiment_key>` corresponds to Model name in Model Zoo (e.g. CNN).
+`<experiment_key>` is one of the keys below, **not** the Model-Zoo display name. Run `train.sh` with no argument to print the full list.
+
+| `<experiment_key>` | Model (see Model Zoo) | Type |
+|--------------------|-----------------------|------|
+| `baseline`            | Baseline LSTM        | Causal |
+| `causal-2lstm`        | 2L-LSTM              | Causal |
+| `causal-cnn`          | Causal-CNN           | Causal |
+| `causal-rcnn`         | Causal-RCNN          | Causal |
+| `causal-trans`        | Causal-Transformer   | Causal |
+| `causal-ctrans`       | Causal ConvTransformer | Causal |
+| `noncausal-2lstm`     | 2L-BiLSTM            | Non-causal |
+| `noncausal-cnn`       | CNN                  | Non-causal |
+| `noncausal-rcnn`      | RCNN                 | Non-causal |
+| `noncausal-trans`     | Transformer          | Non-causal |
+| `noncausal-convtrans` | ConvTransformer      | Non-causal |
+
+Checkpoints are written to `experiments/<config_name>/<run_name>/pretraining/model_state_<epoch>.pth`.
 
 ### Test models and compute phonological competition
 
-To evaluate a trained model and compute phonological competition trajectories (target, cohort, rhyme, and unrelated word activations):
+To evaluate a trained model and compute phonological competition trajectories (target, cohort, rhyme, and unrelated word activations), pass the same key plus one or more checkpoint epochs to evaluate:
 
 ```bash
-sh test.sh <experiment_key>
+bash test.sh <experiment_key> <epoch1> [epoch2 ...]
 ```
 
-This script calculates activation trajectories per competitor type and compares them to human VWP fixation data, producing RMSE and MAE metrics and comparison plots.
+Run `bash test.sh <experiment_key>` with no epochs to list the available checkpoints for that model. This calls [`analysis/_comp_competition_batch.py`](analysis/_comp_competition_batch.py), which computes the per-competitor activation trajectories and writes them to `experiments/<config_name>/<run_name>/training/competition.csv` (plus a word-recognition accuracy). The RMSE/MAE against human VWP fixations and the final comparison figures are produced from that CSV by the notebooks (see **Reproducing Paper Figures**).
 
 ## Evaluating Foundational ASR Models
 
@@ -81,16 +110,15 @@ We also evaluate pretrained foundation models (wav2vec 2.0, HuBERT, Whisper) wit
 
 ### wav2vec 2.0 and HuBERT
 
-Use `eval_wav2vec2.py` to evaluate wav2vec 2.0 and HuBERT models. This script can assess both models by simply changing the HuggingFace model name:
+Use `eval_wav2vec2.py` to evaluate both wav2vec 2.0 and HuBERT — the script loads the model with `Auto*` classes, so the same code handles either architecture. Select the model and output directory with the `MODEL_NAME` and `OUTPUT_DIR` environment variables (both have sensible defaults):
 
 ```bash
-python pretrained_models/eval_wav2vec2.py 
-```
+# wav2vec 2.0 (default) -> writes experiments/wav2vec2/competition.csv
+python pretrained_models/eval_wav2vec2.py
 
-For HuBERT, change the model_name from "facebook/wav2vec2-base-960h" to "facebook/hubert-large-ls960-ft":
-
-```bash
-python pretrained_models/eval_wav2vec2.py 
+# HuBERT -> writes experiments/hubert/competition.csv
+MODEL_NAME=facebook/hubert-large-ls960-ft OUTPUT_DIR=experiments/hubert \
+    python pretrained_models/eval_wav2vec2.py
 ```
 
 ### Whisper
@@ -127,8 +155,8 @@ If you use this benchmark or code, please cite the paper. Temporary bibtex (to b
 @misc{htp2025,
   title={Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR},
   author={Anonymous},
-  booktitle={Submitted to Interspeech 2025},
-  year={2025}
+  booktitle={Interspeech 2026},
+  year={2026}
 }
 ```
 
