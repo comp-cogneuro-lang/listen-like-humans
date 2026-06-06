@@ -45,6 +45,17 @@ body {
 a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
 a:hover { color: #8bbdff; }
 
+.header-links { display: flex; gap: 12px; margin: 22px 0 4px; flex-wrap: wrap; }
+.header-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px; border-radius: 8px;
+  border: 1px solid var(--line); background: rgba(255,255,255,0.04);
+  color: var(--text); font-size: 14px; font-weight: 600;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.header-link:hover { border-color: var(--accent); color: #fff; background: rgba(94,156,255,0.12); }
+.header-link svg { width: 17px; height: 17px; }
+
 /* hero */
 .hero {
   background: radial-gradient(1000px 600px at 50% -100px, rgba(44, 60, 90, 0.4) 0%, var(--bg) 80%);
