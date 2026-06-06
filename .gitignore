@@ -19,3 +19,8 @@ data/embeddings/
 pretrained_models/*checkpoint*
 tmp/
 *.checkpoint
+
+# Scratch / debug outputs
+diff.png
+diff_asr.png
+vwp.png
