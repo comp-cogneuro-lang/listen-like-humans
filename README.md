@@ -154,11 +154,14 @@ Detailed analysis and figure generation notebooks are available in `notebooks/`:
 If you use this benchmark or code, please cite the paper. Temporary bibtex (to be updated upon acceptance):
 
 ```
-@misc{htp2025,
-  title={Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR},
-  author={Anonymous},
-  booktitle={Interspeech 2026},
-  year={2026}
+@inproceedings{peng26_interspeech,
+  title     = {{Do Machines Listen Like Humans? A Temporal Benchmark for Phonological Competition in End-to-End ASR}},
+  author    = {Linkai Peng and Christian Brodbeck and Sahil Luthra and Kevin Brown and Jay Rueckl and Monty Escabi and David Gow and James S. Magnuson},
+  year      = {2026},
+  booktitle = {{Interspeech 2026}},
+  pages     = {1476--1480},
+  doi       = {10.21437/Interspeech.2026-401},
+  issn      = {2958-1796},
 }
 ```
 
